@@ -4,9 +4,15 @@ public class Nothing extends SomeClass {
 
     final int a1 = 5;
 
-    /*int mnozenie() {
-        return a1*a1;
-    }*/
+//    int mnozenie() {
+//        return a1*a1;
+//    }
+
+    void wypiszCar(){
+
+    }
+
+    final Car cr = new Car(5,"bmw", "polonez", 2010, 10000);
 
     static int en1d = Enum1.L.diameter;
     static int en2d = Enum2.S.diameter;
@@ -14,6 +20,17 @@ public class Nothing extends SomeClass {
     private static boolean en = en1d == en2d;
 
     public static void main(String[] args){
+
+        final Car cr = new Car(5,"bmw", "polonez", 2010, 10000);
+
+        System.out.println("Car before changing values: " + cr.getId());
+
+        cr.setId(6);
+
+
+        System.out.println("Car after changing values: " + cr.getId());
+
+        System.out.println("Czy jeden enum rowna sie drugiemu? " + en);
 
         System.out.println("Enum1: " + en1d);
         System.out.println("Enum2: " + en2d);

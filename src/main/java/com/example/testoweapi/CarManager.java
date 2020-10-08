@@ -17,7 +17,7 @@ public class CarManager {
     }
 
     public boolean addCar(Car car) {
-        return carList.add(car);
+            return carList.add(car);
     }
 
     public List<Car> getCarList() {

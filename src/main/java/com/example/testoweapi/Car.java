@@ -28,10 +28,10 @@ public class Car {
         this.id = id;
     }
 
+
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -59,4 +59,7 @@ public class Car {
     public void setMileage(int mileage) {
         this.mileage = mileage;
     }
+
+
+
 }
