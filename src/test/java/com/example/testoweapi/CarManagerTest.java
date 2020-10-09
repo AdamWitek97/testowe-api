@@ -1,7 +1,9 @@
 package com.example.testoweapi;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.verification.VerificationMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,19 +13,27 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 
 import org.hamcrest.Matchers;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.util.Assert;
 
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.*;
 import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class CarManagerTest {
+
+    @Mock
+    private Car car;
 
     @Autowired
     private MockMvc mockMvc;
@@ -76,8 +86,17 @@ public class CarManagerTest {
     @Test
     public void shouldDeleteCar() throws Exception {
 
-        mockMvc.perform(delete("/deleteCar/1")
+        MockHttpServletRequestBuilder requestBuilder = delete("/deleteCar/1");
+
+        mockMvc.perform(requestBuilder
                                      .contentType(MediaType.APPLICATION_JSON))
                                      .andExpect(status().isOk());
+
+/*        MockHttpServletRequestBuilder requestBuilder1 = get("/getCars/Polo");
+        mockMvc.perform(requestBuilder1
+                                     .contentType(MediaType.APPLICATION_JSON))
+                                     .andExpect(status().isOk());*/
+       /* verify(mockMvc, (VerificationMode) delete("/deleteCar/1"));
+        verifyNoInteractions(requestBuilder);*/
     }
 }

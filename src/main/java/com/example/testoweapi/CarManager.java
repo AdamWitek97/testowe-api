@@ -12,11 +12,22 @@ public class CarManager {
 
     public CarManager() {
         this.carList = new ArrayList<>();
-        carList.add(new Car(0,"Polo","VW",1998,40000));
-        carList.add(new Car(1,"126","VW",2002,30000));
+        carList.add(new Car(0,"Polo","VW",1998,40000,true,true));
+        carList.add(new Car(1,"126","VW",2002,30000,false,true));
+        carList.add(new Car(1,"1263","BMW",2002,30000,true,true));
     }
 
     public boolean addCar(Car car) {
+        if(car.isUsedcar()==false){
+            if(car.getMileage()>80){
+                throw new RuntimeException("New car shouldn't have more than 80 miles");
+            }
+        }
+        if(car.getProduction_date()>2000){
+            if(car.isIzofix()==false){
+                throw new RuntimeException("Value cannot be false");
+            }
+        }
             return carList.add(car);
     }
 

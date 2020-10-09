@@ -12,7 +12,7 @@ public class Nothing extends SomeClass {
 
     }
 
-    final Car cr = new Car(5,"bmw", "polonez", 2010, 10000);
+    final static Car cr = new Car(5,"bmw", "polonez", 2010, 10000, true, true);
 
     static int en1d = Enum1.L.diameter;
     static int en2d = Enum2.S.diameter;
@@ -21,7 +21,6 @@ public class Nothing extends SomeClass {
 
     public static void main(String[] args){
 
-        final Car cr = new Car(5,"bmw", "polonez", 2010, 10000);
 
         System.out.println("Car before changing values: " + cr.getId());
 

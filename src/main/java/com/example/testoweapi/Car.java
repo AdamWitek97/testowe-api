@@ -7,17 +7,37 @@ public class Car {
     private String mark;
     private int production_date;
     private int mileage;
+    private boolean izofix;
+    private boolean usedcar;
+
+    public boolean isUsedcar() {
+        return usedcar;
+    }
+
+    public void setUsedcar(boolean usedcar) {
+        this.usedcar = usedcar;
+    }
+
+    public boolean isIzofix() {
+        return izofix;
+    }
+
+    public void setIzofix(boolean izofix) {
+        this.izofix = izofix;
+    }
 
     public Car(){
 
     }
 
-    public Car(int id, String name, String mark, int production_date, int mileage) {
+    public Car(int id, String name, String mark, int production_date, int mileage, boolean izofix, boolean usedcar) {
         this.id = id;
         this.name = name;
         this.mark = mark;
         this.production_date = production_date;
         this.mileage = mileage;
+        this.izofix=izofix;
+        this.usedcar=usedcar;
     }
 
     public int getId() {
