@@ -1,8 +1,17 @@
 package com.example.testoweapi;
 
+
 public class Nothing extends SomeClass {
 
     final int a1 = 5;
+
+    static int p=5;
+
+    static void inkrementacja(){
+        p=3;
+        p++;
+        System.out.println("Static p: " + p);
+    }
 
 //    int mnozenie() {
 //        return a1*a1;
@@ -21,6 +30,9 @@ public class Nothing extends SomeClass {
 
     public static void main(String[] args){
 
+        inkrementacja();
+        inkrementacja();
+        inkrementacja();
 
         System.out.println("Car before changing values: " + cr.getId());
 
