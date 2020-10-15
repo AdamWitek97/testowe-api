@@ -1,3 +1,4 @@
+/*
 package com.example.testoweapi;
 
 import org.springframework.stereotype.Service;
@@ -49,3 +50,4 @@ public class CarManager {
 
     public Car removeCar(int id){ return carList.remove(id);}
 }
+*/

@@ -1,10 +1,31 @@
 package com.example.testoweapi;
 
+import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "car")
 public class Car {
 
-    private int id;
+    @Id
+    @GeneratedValue(generator = "question_generator")
+    @SequenceGenerator(
+            name = "question_generator",
+            sequenceName = "question_sequence",
+            initialValue = 1000
+    )
+    private Long id;
+
+    @NotBlank
     private String name;
+
+    @NotBlank
+    @Size(min = 3)
     private String mark;
+
+    @NotBlank
     private int production_date;
     private int mileage;
     private boolean izofix;
@@ -30,24 +51,13 @@ public class Car {
 
     }
 
-    public Car(int id, String name, String mark, int production_date, int mileage, boolean izofix, boolean usedcar) {
-        this.id = id;
-        this.name = name;
-        this.mark = mark;
-        this.production_date = production_date;
-        this.mileage = mileage;
-        this.izofix=izofix;
-        this.usedcar=usedcar;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;

@@ -1,6 +1,9 @@
 package com.example.testoweapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,37 +11,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.function.Predicate;
 
 @RestController
 public class CarApi {
 
-    private CarManager carManager;
-
     @Autowired
-    public CarApi (CarManager carManager){
-        this.carManager=carManager;
-    }
+    private CarRepository carRepository;
+
 
     @GetMapping("/getCars")
-    public List<Car> getCars(){
-        return carManager.getCarList();
+    public Page<Car> getCars(Pageable pageable){
+        return carRepository.findAll(pageable);
     }
 
-    @GetMapping("/getCars/{name}")
+    /*@GetMapping("/getCars/{name}")
     public Car getCarsName(@PathVariable("name") String carName){
         return carManager.getCarListByName(carName);
     }
-
+*/
     @PostMapping("/addCar")
-    public boolean addCar(@RequestBody Car car){
-        return carManager.addCar(car);
+    public Car addCar(@Valid @RequestBody Car car){
+        return carRepository.save(car);
     }
 
     @DeleteMapping("/deleteCar/{id}")
-    public void deleteCar(@PathVariable("id") int id){
-        carManager.removeCar(id);
+    public ResponseEntity<?> deleteCar(@PathVariable Long id){
+        return carRepository.findById(id)
+                            .map(car -> {
+                                carRepository.delete(car);
+                                return ResponseEntity.ok().build();
+                            }).orElseThrow(() -> new ResourceNotFoundException("Question not found with id "+id));
     }
 
 }

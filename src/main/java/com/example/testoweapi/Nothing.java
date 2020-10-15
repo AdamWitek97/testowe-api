@@ -21,7 +21,7 @@ public class Nothing extends SomeClass {
 
     }
 
-    final static Car cr = new Car(5,"bmw", "polonez", 2010, 10000, true, true);
+    //final static Car cr = new Car((long) 5, "bmw", "polonez", 2010, 10000, true, true);
 
     static int en1d = Enum1.L.diameter;
     static int en2d = Enum2.S.diameter;
@@ -34,12 +34,12 @@ public class Nothing extends SomeClass {
         inkrementacja();
         inkrementacja();
 
-        System.out.println("Car before changing values: " + cr.getId());
+        //System.out.println("Car before changing values: " + cr.getId());
 
-        cr.setId(6);
+       // cr.setId(6);
 
 
-        System.out.println("Car after changing values: " + cr.getId());
+       // System.out.println("Car after changing values: " + cr.getId());
 
         System.out.println("Czy jeden enum rowna sie drugiemu? " + en);
 
