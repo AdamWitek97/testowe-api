@@ -1,4 +1,4 @@
-package com.example.testoweapi;
+package com.example.testoweapi.other;
 
 public enum Enum2 {
     L(60),

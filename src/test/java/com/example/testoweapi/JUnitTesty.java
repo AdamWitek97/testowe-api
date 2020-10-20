@@ -1,67 +1,72 @@
-/*
 package com.example.testoweapi;
 
-import org.junit.jupiter.api.Assertions;
+import com.example.testoweapi.model.Car;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
+
+import static org.junit.Assert.assertTrue;
 
 
 class JUnitTesty {
-    Car cr = new Car();
-    CarManager crm = new CarManager();
 
-    public void values(){
-        cr.setId(2);
-        cr.setName("Auto");
-        cr.setMark("Marka");
-        cr.setProduction_date(2003);
-        cr.setMileage(1500);
-        cr.setIzofix(true);
-        cr.setUsedcar(true);
+    static private Validator validator;
+    static private ValidatorFactory validatorFactory;
+    private Car car;
+
+    public JUnitTesty(){
 
     }
 
-    @Test
-    void addCar_Created_After_2000_Without_Izofix_Should_Throw_RuntimeException(){
-        //given
-        values();
-        cr.setIzofix(false);
+    @BeforeClass
+    public static void setUpClass(){
+        validatorFactory = Validation.buildDefaultValidatorFactory();
+        validator = validatorFactory.getValidator();
+    }
+    @AfterClass
+    public void close() {
+        validatorFactory.close();
+    }
 
-        //then
-        Assertions.assertThrows(RuntimeException.class, () -> crm.addCar(cr));
+    @Before
+    public void setUp(){
+
+    }
+
+    @After
+    public void tearDown(){
+
+    }
+
+
+    void Values(){
     }
 
     @Test
-    void addCar_Created_After_2000_With_Izofix(){
-
-        //given
-        values();
-
-        //then
-        Assertions.assertDoesNotThrow( () -> crm.addCar(cr));
+    void CarValues(){
+        car = new Car();
+        car.setName("car");
+        car.setMark("ABC");
+        car.setProduction_date(2002);
+        car.setMileage(50000);
+        car.setIzofix(true);
+        car.setUsedcar(true);
+        car.setVin("01234567890123456");
+        Set<ConstraintViolation<Car>> violations = validator.validateProperty(car,"name");
+        assertTrue(violations.isEmpty());
     }
 
     @Test
-    void addCar_Which_Was_Not_Used(){
+    void shouldSetCarName(){
 
-        //given
-        values();
-        cr.setMileage(0);
-        cr.setUsedcar(false);
 
-        //then
-        Assertions.assertDoesNotThrow( () -> crm.addCar(cr));
-    }
-
-    @Test
-    void addCar_Which_Was_Not_Used_But_With_High_Mileage_Should_Throw_RuntimeException(){
-
-        //given
-        values();
-        cr.setMileage(5000);
-        cr.setUsedcar(false);
-
-        //then
-        Assertions.assertThrows(RuntimeException.class, () -> crm.addCar(cr));
     }
 }
-*/

@@ -1,4 +1,4 @@
-package com.example.testoweapi;
+package com.example.testoweapi.other;
 
 import java.util.Objects;
 

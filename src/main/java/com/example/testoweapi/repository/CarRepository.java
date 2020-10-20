@@ -1,6 +1,6 @@
-package com.example.testoweapi;
+package com.example.testoweapi.repository;
 
-import com.example.testoweapi.Car;
+import com.example.testoweapi.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

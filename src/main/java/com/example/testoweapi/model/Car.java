@@ -1,8 +1,13 @@
-package com.example.testoweapi;
+package com.example.testoweapi.model;
+
 
 import javax.persistence.Entity;
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -10,12 +15,7 @@ import javax.validation.constraints.Size;
 public class Car {
 
     @Id
-    @GeneratedValue(generator = "question_generator")
-    @SequenceGenerator(
-            name = "question_generator",
-            sequenceName = "question_sequence",
-            initialValue = 1000
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
@@ -25,11 +25,31 @@ public class Car {
     @Size(min = 3)
     private String mark;
 
-    @NotBlank
+    @NotNull
     private int production_date;
     private int mileage;
     private boolean izofix;
     private boolean usedcar;
+
+    @NotBlank
+    @Size(min =17, max =17)
+    private String vin;
+
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        for(int i=9;i<17;i++){
+            boolean flag = Character.isDigit(vin.charAt(i));
+            if(flag){
+            }
+            else{
+                throw new RuntimeException();
+            }
+        }
+        this.vin = vin;
+    }
 
     public boolean isUsedcar() {
         return usedcar;
@@ -62,6 +82,7 @@ public class Car {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
